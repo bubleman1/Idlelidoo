@@ -1,5 +1,14 @@
+body{
+	
+}
 #game {
-	background-color: #0a0a23;
 	border: 1px solid #0a0aff;
 
+}
+#moneyNeededForRebirthText{
+	color: #0de8f2;
+	font-style: italic;
+}
+#moneyNeededForRebirthValueText{
+	font-style: normal;
 }

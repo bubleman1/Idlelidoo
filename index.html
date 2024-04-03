@@ -4,14 +4,13 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Idle</title>
-	<link type="stylesheet" src="styles.css">
+	<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 	<div id="game">
 		<div id="stats">
-			<span class="statsText"><span id="currencyNameText">Dabloons: </span><span id="currencyText">0</span></span>
-			<span class="statsText" id="rebirths">Rebirths: <span id="rebirthValueText">0</span></span>
-
+			<span class="statsText"><span id="currencyNameText">money: </span><span id="currencyText">0</span></span>
+			<span class="statsText" id="rebirthText">rebirths: <span id="rebirthValText">0</span></span>
 		</div>
 		<div id="upgradeScreen">
 			<!--Generate upgrades based on current total money generated.-->
@@ -19,6 +18,7 @@
 		<div id="playzone">
 			<button id="mainButton">Make me rich!</button>
 		</div>
+		<span class="statsText" id="moneyNeededForRebirthText">Money needed for next rebirth: <span id="moneyNeededForRebirthValueText">100</span></span>
 	</div>
 	<script type="text/javascript" src="./scripts.js"></script>
 </body>
