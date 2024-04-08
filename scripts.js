@@ -5,8 +5,9 @@ let universeNumber = 0;
 
 let buttonValue = 1;
 let buttonMultiplier = 1.00;
-let buttonPassiveIncome = 0;
-let buttonPassiveIncomeMultiplier = 1;
+let passiveIncome = 0;
+let passiveRebirthIncome = 0;
+let passiveIncomeMultiplier = 1;
 
 let moneyNeededForRebirth = 100;
 
@@ -70,14 +71,7 @@ const rebirthValText = document.querySelector("#rebirthValText");
 mainButton.onclick = getClickMoney;
 
 function getClickMoney(){
-	money += Math.floor(buttonValue * buttonMultiplier);
-	currencyText.innerText = money;
-	console.log(money + " " + buttonMultiplier);
-	if(money >= moneyNeededForRebirth)
-	{
-		mainButton.onclick = doRebirth;
-		mainButton.innerText = "Rebirth";
-	}
+	getMoney(buttonValue * buttonMultiplier);
 }
 function upgradeButton(number){
 	let currentUpgrade = buttonUpgrades[number];
@@ -124,9 +118,10 @@ function doRebirth()
 	rebirths += 1;
 	rebirthValText.innerText = rebirths;
 	buttonValue = 1 + rebirths;
+	passiveRebirthIncome = 0 + rebirths;
 	moneyNeededForRebirth += Math.floor(moneyNeededForRebirth * 0.66);
 	buttonMultiplier = 1.00 + rebirths * 0.2;
-	buttonPassiveIncome = 0 + Math.floor(rebirths/2);
+	buttonPassiveIncome = 1.00 + rebirths * 0.2;
 	buttonPassiveIncomeMultiplier = Math.floor(rebirths / 10);
 
 	//Universe switch
@@ -144,4 +139,20 @@ function doRebirth()
 	mainButton.onclick = getClickMoney;
 
 	//Rebirth upgrades are applied here.
+}
+function doPassiveIncomeTick()
+{
+	getMoney((passiveIncome + passiveRebirthIncome) * passiveIncomeMultiplier);
+}
+setInterval(doPassiveIncomeTick, 1000);
+
+function getMoney(ammount)
+{
+	money += ammount;
+	currencyText.innerText = Math.round((money + Number.EPSILON) * 100) / 100;
+	if(money >= moneyNeededForRebirth)
+	{
+		mainButton.onclick = doRebirth;
+		mainButton.innerText = "Rebirth";
+	}
 }
